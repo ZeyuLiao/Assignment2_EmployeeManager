@@ -12,28 +12,32 @@ import java.util.ArrayList;
  */
 public class ProfileList {
     
-    private ArrayList<Info> profile;
+    private ArrayList<Info> pList;
     
     public ProfileList(){
-        this.profile = new ArrayList<Info>();                
+        this.pList = new ArrayList<Info>();                
     }
 
     public ArrayList<Info> getHistory() {
-        return profile;
+        return pList;
     }
 
     public void setHistory(ArrayList<Info> history) {
-        this.profile = history;
+        this.pList = history;
     }
     
     
     public Info addNewProfile(){
     
         Info newProfile = new Info();
-        profile.add(newProfile);   
+        pList.add(newProfile);   
         return newProfile;
     }
     
+    public void deleteProfiles(Info info){
+        pList.remove(info);
+        
+    }
    
     
 }

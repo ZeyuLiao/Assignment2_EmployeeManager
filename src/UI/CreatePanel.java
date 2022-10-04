@@ -6,6 +6,8 @@ package UI;
 
 import static java.awt.Image.SCALE_DEFAULT;
 import java.io.File;
+import java.util.Arrays;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,6 +19,8 @@ import model.ProfileList;
  *
  * @author ZeyuLiao
  */
+
+
 public class CreatePanel extends javax.swing.JPanel {
 
     /**
@@ -24,10 +28,20 @@ public class CreatePanel extends javax.swing.JPanel {
      */
     
     ProfileList pList;
+    int[] flag = {0,0,0,0,0,0,0,0};
     
     public CreatePanel(ProfileList pList) {
         this.pList = pList;
         initComponents();
+        jLabelNoticeName.setVisible(false);
+        jLabelNoticeID.setVisible(false);
+        jLabelNoticeAge.setVisible(false);
+        jLabelNoticeLevel.setVisible(false);
+        jLabelNoticeTeam.setVisible(false);
+        jLabelNoticePosition.setVisible(false);
+        jLabelNoticeTel.setVisible(false);
+        jLabelNoticeEmail.setVisible(false);
+        
     }
 
     /**
@@ -65,8 +79,17 @@ public class CreatePanel extends javax.swing.JPanel {
         jTextFieldEmail = new javax.swing.JTextField();
         jButtonUpload = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxYear = new javax.swing.JComboBox<>();
+        jComboBoxMonth = new javax.swing.JComboBox<>();
+        jLabelNoticeName = new javax.swing.JLabel();
+        jLabelNoticeID = new javax.swing.JLabel();
+        jLabelNoticeAge = new javax.swing.JLabel();
+        jLabelNoticeLevel = new javax.swing.JLabel();
+        jLabelNoticeTeam = new javax.swing.JLabel();
+        jLabelNoticePosition = new javax.swing.JLabel();
+        jLabelNoticeTel = new javax.swing.JLabel();
+        jLabelNoticeEmail = new javax.swing.JLabel();
+        jLabelDomainName = new javax.swing.JLabel();
 
         jScrollPaneCreate.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -99,7 +122,55 @@ public class CreatePanel extends javax.swing.JPanel {
         jLabelImageIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelImageIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        jTextFieldName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldNameFocusLost(evt);
+            }
+        });
+
+        jTextFieldID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldIDFocusLost(evt);
+            }
+        });
+
+        jTextFieldAge.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldAgeFocusLost(evt);
+            }
+        });
+
         jComboBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+
+        jTextFieldLevel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldLevelFocusLost(evt);
+            }
+        });
+
+        jTextFieldTeamInfo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldTeamInfoFocusLost(evt);
+            }
+        });
+
+        jTextFieldPosition.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldPositionFocusLost(evt);
+            }
+        });
+
+        jTextFieldTel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldTelFocusLost(evt);
+            }
+        });
+
+        jTextFieldEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldEmailFocusLost(evt);
+            }
+        });
 
         jButtonUpload.setText("Upload");
         jButtonUpload.addActionListener(new java.awt.event.ActionListener() {
@@ -115,16 +186,58 @@ public class CreatePanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005" }));
+        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+        jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+
+        jLabelNoticeName.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeName.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeName.setText("You must input your name");
+
+        jLabelNoticeID.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeID.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeID.setText("You must input your 6 digits ID correctly");
+
+        jLabelNoticeAge.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeAge.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeAge.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeAge.setText("You must input your name");
+
+        jLabelNoticeLevel.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeLevel.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeLevel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeLevel.setText("You must input your level");
+
+        jLabelNoticeTeam.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeTeam.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeTeam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeTeam.setText("You must input your team");
+
+        jLabelNoticePosition.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticePosition.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticePosition.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticePosition.setText("You must input your position title");
+
+        jLabelNoticeTel.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeTel.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeTel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeTel.setText("You must input your 10 digits phone number");
+
+        jLabelNoticeEmail.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 8)); // NOI18N
+        jLabelNoticeEmail.setForeground(new java.awt.Color(255, 51, 0));
+        jLabelNoticeEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNoticeEmail.setText("You must input your email correctly");
+
+        jLabelDomainName.setText("@northeastern.edu");
 
         javax.swing.GroupLayout jPanelCreateLayout = new javax.swing.GroupLayout(jPanelCreate);
         jPanelCreate.setLayout(jPanelCreateLayout);
         jPanelCreateLayout.setHorizontalGroup(
             jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCreateLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(67, 67, 67)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,88 +252,123 @@ public class CreatePanel extends javax.swing.JPanel {
                     .addComponent(jLabelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCreateLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanelCreateLayout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, 1, Short.MAX_VALUE))
-                            .addComponent(jTextFieldPosition)
-                            .addComponent(jTextFieldTeamInfo)
-                            .addComponent(jTextFieldLevel)
-                            .addComponent(jTextFieldAge)
-                            .addComponent(jTextFieldID)
-                            .addComponent(jTextFieldName)
-                            .addComponent(jTextFieldTel)
-                            .addComponent(jTextFieldEmail)
-                            .addComponent(jComboBoxGender, 0, 161, Short.MAX_VALUE))
-                        .addGap(96, 96, 96))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCreateLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelNoticeID)
+                                .addGap(20, 20, 20))
+                            .addGroup(jPanelCreateLayout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelCreateLayout.createSequentialGroup()
+                                        .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxMonth, 0, 1, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldPosition)
+                                    .addComponent(jTextFieldTeamInfo)
+                                    .addComponent(jTextFieldLevel)
+                                    .addComponent(jTextFieldAge)
+                                    .addComponent(jTextFieldID)
+                                    .addComponent(jTextFieldName)
+                                    .addComponent(jTextFieldTel)
+                                    .addComponent(jComboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticeAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticeLevel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticeTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticePosition, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticeTel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelNoticeEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanelCreateLayout.createSequentialGroup()
+                                        .addComponent(jTextFieldEmail)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabelDomainName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanelCreateLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCreateLayout.createSequentialGroup()
+                                .addComponent(jButtonUpload)
+                                .addGap(133, 133, 133))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCreateLayout.createSequentialGroup()
+                                .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)))
+                        .addGap(0, 48, Short.MAX_VALUE))))
             .addGroup(jPanelCreateLayout.createSequentialGroup()
                 .addGap(217, 217, 217)
                 .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCreateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonUpload)
-                .addGap(145, 145, 145))
             .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelCreateLayout.setVerticalGroup(
             jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCreateLayout.createSequentialGroup()
                 .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelName)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
+                .addComponent(jLabelNoticeName, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelID)
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabelNoticeID)
+                .addGap(4, 4, 4)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAge)
                     .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
+                .addComponent(jLabelNoticeAge, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelGender)
                     .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSDate)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLevel)
                     .addComponent(jTextFieldLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabelNoticeLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTeamInfo)
                     .addComponent(jTextFieldTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabelNoticeTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPosition)
                     .addComponent(jTextFieldPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabelNoticePosition, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTel)
                     .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabelNoticeTel, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelEmail)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDomainName))
+                .addGap(3, 3, 3)
+                .addComponent(jLabelNoticeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelPhoto)
-                    .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPhoto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonUpload)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -267,31 +415,40 @@ public class CreatePanel extends javax.swing.JPanel {
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         // TODO add your handling code here:
+        System.out.println(Arrays.toString(flag));
+        if(flag[0] == 0 || flag[1] == 0 || flag[2] == 0 || flag[3] == 0 || flag[4] == 0 || flag[5] == 0 || flag[6] == 0 || flag[7] == 0){
+            JOptionPane.showMessageDialog(null, "Some inputs exist error, Please check your inputs", "alert", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         String name = jTextFieldName.getText();
         int id = Integer.parseInt(jTextFieldID.getText());
         int age = Integer.parseInt(jTextFieldAge.getText());
-        String gender = jComboBox1.getName();
+        String gender = (String) jComboBoxGender.getSelectedItem();
+        String start_date = ((String) jComboBoxMonth.getSelectedItem()) + ((String) jComboBoxYear.getSelectedItem());
         String position = jTextFieldPosition.getText();
         String team = jTextFieldTeamInfo.getText();
         String level = jTextFieldLevel.getText();
-        int tel = Integer.parseInt(jTextFieldTel.getText());
+        Long tel = Long.valueOf(jTextFieldTel.getText());
         String email = jTextFieldEmail.getText();
+        Icon img = jLabelImageIcon.getIcon();
         
         Info info = pList.addNewProfile();
         info.setName(name);
         info.setAge(age);
         info.setId(id);
         info.setGender(gender);
+        info.setStart_date(start_date);
         info.setTeam_info(team);
         info.setLevel(level);
         info.setEmail(email);
         info.setTel(tel);
         info.setPosition_title(position);
+        info.setPhoto(img);
         
         
      
-        JOptionPane.showMessageDialog(this, "New Vital Signs added");
-        //System.out.println(info.getName());
+        JOptionPane.showMessageDialog(this, "New Employee Profile Added");
         
         jTextFieldName.setText("");
         jTextFieldID.setText("");
@@ -300,24 +457,139 @@ public class CreatePanel extends javax.swing.JPanel {
         jTextFieldTeamInfo.setText("");
         jTextFieldLevel.setText("");        
         jTextFieldTel.setText("");        
-        jTextFieldEmail.setText("");       
+        jTextFieldEmail.setText("");
+        jLabelImageIcon.setIcon(null);
                 
     }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jTextFieldNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNameFocusLost
+        // TODO add your handling code here:
+        if("".equals(jTextFieldName.getText())){
+            jLabelNoticeName.setVisible(true);
+            flag[0] = 0;
+        }
+        else{
+            jLabelNoticeName.setVisible(false);
+            flag[0] = 1;
+        }
+        
+    }//GEN-LAST:event_jTextFieldNameFocusLost
+
+    private void jTextFieldIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldIDFocusLost
+        // TODO add your handling code here:
+        if(jTextFieldID.getText().matches("\\d{6}") == false){
+            jLabelNoticeID.setVisible(true);
+            flag[1] = 0;
+        }
+        else{
+            jLabelNoticeID.setVisible(false);            
+            flag[1] = 1;
+        }
+        
+    }//GEN-LAST:event_jTextFieldIDFocusLost
+
+    private void jTextFieldAgeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldAgeFocusLost
+        // TODO add your handling code here:
+        if(jTextFieldAge.getText().matches("\\d{2}") == false){
+            jLabelNoticeAge.setVisible(true);
+            flag[2] = 0;
+        }
+        else{
+            jLabelNoticeAge.setVisible(false);
+            flag[2] = 1;
+        }
+        
+        
+    }//GEN-LAST:event_jTextFieldAgeFocusLost
+
+    private void jTextFieldLevelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLevelFocusLost
+        // TODO add your handling code here:
+        if("".equals(jTextFieldLevel.getText())){
+            jLabelNoticeLevel.setVisible(true);
+            flag[3] = 0;
+        }
+        else{
+            jLabelNoticeLevel.setVisible(false);
+            flag[3] = 1;
+        }
+    }//GEN-LAST:event_jTextFieldLevelFocusLost
+
+    private void jTextFieldTeamInfoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTeamInfoFocusLost
+        // TODO add your handling code here:
+        if("".equals(jTextFieldTeamInfo.getText())){
+            jLabelNoticeTeam.setVisible(true);
+            flag[4] = 0;
+        }
+        else{
+            jLabelNoticeTeam.setVisible(false);
+            flag[4] = 1;
+        }
+        
+    }//GEN-LAST:event_jTextFieldTeamInfoFocusLost
+
+    private void jTextFieldPositionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPositionFocusLost
+        // TODO add your handling code here:
+        if("".equals(jTextFieldPosition.getText())){
+            jLabelNoticePosition.setVisible(true);
+            flag[5] = 0;
+        }
+        else{
+            jLabelNoticePosition.setVisible(false);
+            flag[5] = 1;
+        }
+        
+    }//GEN-LAST:event_jTextFieldPositionFocusLost
+
+    private void jTextFieldTelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldTelFocusLost
+        // TODO add your handling code here:
+        if(jTextFieldTel.getText().matches("\\d{10}") == false){
+            jLabelNoticeTel.setVisible(true);
+            flag[6] = 0;
+        }
+        else{
+            jLabelNoticeTel.setVisible(false);
+            flag[6] = 1;
+            
+        }
+    }//GEN-LAST:event_jTextFieldTelFocusLost
+
+    private void jTextFieldEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldEmailFocusLost
+        // TODO add your handling code here:
+        if("".equals(jTextFieldEmail.getText())){
+            jLabelNoticeEmail.setVisible(true);
+            flag[7] = 0;
+        }
+        else{
+            jLabelNoticeEmail.setVisible(false);
+            flag[7] = 1;
+            
+        }
+        
+    }//GEN-LAST:event_jTextFieldEmailFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSave;
     private javax.swing.JButton jButtonUpload;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxGender;
+    private javax.swing.JComboBox<String> jComboBoxMonth;
+    private javax.swing.JComboBox<String> jComboBoxYear;
     private javax.swing.JLabel jLabelAge;
+    private javax.swing.JLabel jLabelDomainName;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelGender;
     private javax.swing.JLabel jLabelID;
     private javax.swing.JLabel jLabelImageIcon;
     private javax.swing.JLabel jLabelLevel;
     private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelNoticeAge;
+    private javax.swing.JLabel jLabelNoticeEmail;
+    private javax.swing.JLabel jLabelNoticeID;
+    private javax.swing.JLabel jLabelNoticeLevel;
+    private javax.swing.JLabel jLabelNoticeName;
+    private javax.swing.JLabel jLabelNoticePosition;
+    private javax.swing.JLabel jLabelNoticeTeam;
+    private javax.swing.JLabel jLabelNoticeTel;
     private javax.swing.JLabel jLabelPhoto;
     private javax.swing.JLabel jLabelPosition;
     private javax.swing.JLabel jLabelSDate;

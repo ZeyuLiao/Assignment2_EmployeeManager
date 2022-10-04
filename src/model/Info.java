@@ -4,6 +4,7 @@
  */
 package model;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
@@ -25,9 +26,9 @@ public class Info {
     private String Team_info;
     private String Position_title;
     private String Contact;
-    private int tel;
+    private Long tel;
     private String email ;
-    private ImageIcon Photo;
+    private Icon Photo;
 
 
     public String getName() {
@@ -104,11 +105,11 @@ public class Info {
         this.Contact = Contact;
     }
 
-    public int getTel() {
+    public Long getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(Long tel) {
         this.tel = tel;
     }
 
@@ -120,15 +121,18 @@ public class Info {
         this.email = email;
     }
 
-    public ImageIcon getPhoto() {
+    public Icon getPhoto() {
         return Photo;
     }
 
-    public void setPhoto(ImageIcon Photo) {
+    public void setPhoto(Icon Photo) {
         this.Photo = Photo;
     }
     
-    
+    @Override
+    public String toString(){
+        return name;       
+    }
     
     
 }

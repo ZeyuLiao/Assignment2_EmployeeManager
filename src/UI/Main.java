@@ -40,6 +40,7 @@ public class Main extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("EmployeeManager");
         setLocation(new java.awt.Point(550, 250));
         setSize(new java.awt.Dimension(600, 400));
 
