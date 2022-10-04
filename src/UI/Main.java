@@ -4,13 +4,7 @@
  */
 package UI;
 
-import static java.awt.Image.SCALE_DEFAULT;
-import static java.awt.SystemColor.menu;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JPopupMenu;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import model.ProfileList;
 
 /**
  *
@@ -21,7 +15,12 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    
+    ProfileList pList;
+    
     public Main() {
+        
+        pList = new ProfileList();
         initComponents();
     }
 
@@ -34,34 +33,89 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel2 = new javax.swing.JPanel();
+        jButtonCreate = new javax.swing.JButton();
+        jButtonView = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(550, 250));
         setSize(new java.awt.Dimension(600, 400));
 
-        UI.CreatePanel createPanel = new CreatePanel();
-        jTabbedPane1.addTab("Create Profile", createPanel);
+        jSplitPane1.setDividerLocation(30);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        UI.ViewPanel viewPanel = new UI.ViewPanel();
-        jTabbedPane1.addTab("Vreate Profile", viewPanel);
+        jButtonCreate.setText("Create");
+        jButtonCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreateActionPerformed(evt);
+            }
+        });
+
+        jButtonView.setText("View");
+        jButtonView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jButtonCreate)
+                .addGap(5, 5, 5)
+                .addComponent(jButtonView)
+                .addGap(0, 433, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(jButtonView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setTopComponent(jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 582, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 423, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateActionPerformed
+        // TODO add your handling code here:
+        CreatePanel create = new CreatePanel(pList);
+        jSplitPane1.setBottomComponent(create);        
+    }//GEN-LAST:event_jButtonCreateActionPerformed
+
+    private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
+        // TODO add your handling code here:
+        ViewPanel view = new ViewPanel(pList);
+        jSplitPane1.setBottomComponent(view);
+    }//GEN-LAST:event_jButtonViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,6 +153,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jButtonCreate;
+    private javax.swing.JButton jButtonView;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

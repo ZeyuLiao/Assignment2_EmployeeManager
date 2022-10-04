@@ -4,11 +4,9 @@
  */
 package UI;
 
-import static java.awt.Image.SCALE_DEFAULT;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import model.Info;
+import model.ProfileList;
 
 /**
  *
@@ -19,8 +17,13 @@ public class ViewPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreatePanel
      */
-    public ViewPanel() {
+    ProfileList pList;
+
+    public ViewPanel(ProfileList pList) {
+        this.pList = pList;
+            
         initComponents();
+        populateTable();
     }
 
     /**
@@ -32,8 +35,8 @@ public class ViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPaneCreate = new javax.swing.JScrollPane();
-        jPanelCreate = new javax.swing.JPanel();
+        jScrollPaneView = new javax.swing.JScrollPane();
+        jPanelView = new javax.swing.JPanel();
         jLabelName = new javax.swing.JLabel();
         jLabelID = new javax.swing.JLabel();
         jLabelAge = new javax.swing.JLabel();
@@ -50,9 +53,9 @@ public class ViewPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableViewAll = new javax.swing.JTable();
 
-        jScrollPaneCreate.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPaneView.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jLabelName.setText("Name");
 
@@ -81,41 +84,38 @@ public class ViewPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ViewProfile");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("View Info");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Delete");
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Search");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableViewAll.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "ID", "Age", "Start Date", "Level", "Teams", "Position", "Phone Number", "Email"
+                "Name", "ID", "Team", "Position", "Title"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
 
-        javax.swing.GroupLayout jPanelCreateLayout = new javax.swing.GroupLayout(jPanelCreate);
-        jPanelCreate.setLayout(jPanelCreateLayout);
-        jPanelCreateLayout.setHorizontalGroup(
-            jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCreateLayout.createSequentialGroup()
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableViewAll);
+
+        javax.swing.GroupLayout jPanelViewLayout = new javax.swing.GroupLayout(jPanelView);
+        jPanelView.setLayout(jPanelViewLayout);
+        jPanelViewLayout.setHorizontalGroup(
+            jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelViewLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -123,23 +123,23 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addGap(13, 13, 13))
-            .addGroup(jPanelCreateLayout.createSequentialGroup()
+            .addGroup(jPanelViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addGroup(jPanelCreateLayout.createSequentialGroup()
-                        .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelViewLayout.createSequentialGroup()
+                        .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelCreateLayout.createSequentialGroup()
-                                .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelViewLayout.createSequentialGroup()
+                                .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabelTeamInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabelPosition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabelTel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelAge, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,22 +149,22 @@ public class ViewPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanelCreateLayout.setVerticalGroup(
-            jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCreateLayout.createSequentialGroup()
+        jPanelViewLayout.setVerticalGroup(
+            jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addGap(5, 5, 5)
-                .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelCreateLayout.createSequentialGroup()
+                    .addGroup(jPanelViewLayout.createSequentialGroup()
                         .addComponent(jLabelName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelID)
@@ -184,10 +184,10 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addComponent(jLabelTel)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelEmail)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPaneCreate.setViewportView(jPanelCreate);
+        jScrollPaneView.setViewportView(jPanelView);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -197,7 +197,7 @@ public class ViewPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPaneCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneView, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -206,11 +206,30 @@ public class ViewPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPaneCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneView, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                     .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
+        model.setRowCount(0);
+        
+        for (Info info : pList.getHistory()){
+            Object[] row = new Object[5];
+            System.out.println(info.getName());
+            
+            row[0] = info.getName();
+            row[1] = info.getId();
+            row[2] = info.getPosition_title();
+            row[3] = info.getTeam_info();
+            row[4] = info.getLevel();
+            
+            model.addRow(row);           
+        }
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -228,9 +247,9 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelSDate;
     private javax.swing.JLabel jLabelTeamInfo;
     private javax.swing.JLabel jLabelTel;
-    private javax.swing.JPanel jPanelCreate;
+    private javax.swing.JPanel jPanelView;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPaneCreate;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPaneView;
+    private javax.swing.JTable jTableViewAll;
     // End of variables declaration//GEN-END:variables
 }

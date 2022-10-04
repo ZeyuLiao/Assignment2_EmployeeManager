@@ -19,6 +19,7 @@ public class Info {
     private String name;
     private int id;
     private int age;
+    private String gender;
     private String Start_date;
     private String Level;
     private String Team_info;
@@ -53,6 +54,16 @@ public class Info {
         this.age = age;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    
+    
     public String getStart_date() {
         return Start_date;
     }

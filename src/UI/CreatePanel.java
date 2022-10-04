@@ -8,7 +8,10 @@ import static java.awt.Image.SCALE_DEFAULT;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import model.Info;
+import model.ProfileList;
 
 /**
  *
@@ -19,7 +22,11 @@ public class CreatePanel extends javax.swing.JPanel {
     /**
      * Creates new form CreatePanel
      */
-    public CreatePanel() {
+    
+    ProfileList pList;
+    
+    public CreatePanel(ProfileList pList) {
+        this.pList = pList;
         initComponents();
     }
 
@@ -102,6 +109,11 @@ public class CreatePanel extends javax.swing.JPanel {
         });
 
         jButtonSave.setText("Save");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005" }));
 
@@ -111,10 +123,6 @@ public class CreatePanel extends javax.swing.JPanel {
         jPanelCreate.setLayout(jPanelCreateLayout);
         jPanelCreateLayout.setHorizontalGroup(
             jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCreateLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanelCreateLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -145,7 +153,7 @@ public class CreatePanel extends javax.swing.JPanel {
                             .addComponent(jTextFieldName)
                             .addComponent(jTextFieldTel)
                             .addComponent(jTextFieldEmail)
-                            .addComponent(jComboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBoxGender, 0, 161, Short.MAX_VALUE))
                         .addGap(96, 96, 96))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCreateLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,13 +167,13 @@ public class CreatePanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonUpload)
                 .addGap(145, 145, 145))
+            .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelCreateLayout.setVerticalGroup(
             jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCreateLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(51, 51, 51)
                 .addGroup(jPanelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelName)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,6 +264,45 @@ public class CreatePanel extends javax.swing.JPanel {
             jLabelImageIcon.setIcon(img);
         }
     }//GEN-LAST:event_jButtonUploadActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+        String name = jTextFieldName.getText();
+        int id = Integer.parseInt(jTextFieldID.getText());
+        int age = Integer.parseInt(jTextFieldAge.getText());
+        String gender = jComboBox1.getName();
+        String position = jTextFieldPosition.getText();
+        String team = jTextFieldTeamInfo.getText();
+        String level = jTextFieldLevel.getText();
+        int tel = Integer.parseInt(jTextFieldTel.getText());
+        String email = jTextFieldEmail.getText();
+        
+        Info info = pList.addNewProfile();
+        info.setName(name);
+        info.setAge(age);
+        info.setId(id);
+        info.setGender(gender);
+        info.setTeam_info(team);
+        info.setLevel(level);
+        info.setEmail(email);
+        info.setTel(tel);
+        info.setPosition_title(position);
+        
+        
+     
+        JOptionPane.showMessageDialog(this, "New Vital Signs added");
+        //System.out.println(info.getName());
+        
+        jTextFieldName.setText("");
+        jTextFieldID.setText("");
+        jTextFieldAge.setText("");
+        jTextFieldPosition.setText("");
+        jTextFieldTeamInfo.setText("");
+        jTextFieldLevel.setText("");        
+        jTextFieldTel.setText("");        
+        jTextFieldEmail.setText("");       
+                
+    }//GEN-LAST:event_jButtonSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
