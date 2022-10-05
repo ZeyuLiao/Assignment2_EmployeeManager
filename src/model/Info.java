@@ -29,8 +29,10 @@ public class Info {
     private Long tel;
     private String email ;
     private Icon Photo;
-
-
+    private Object year;
+    private Object month;
+    private Object genderObject;
+    
     public String getName() {
         return name;
     }
@@ -128,6 +130,33 @@ public class Info {
     public void setPhoto(Icon Photo) {
         this.Photo = Photo;
     }
+
+    public Object getYear() {
+        return year;
+    }
+
+    public void setYear(Object year) {
+        this.year = year;
+    }
+
+    public Object getMonth() {
+        return month;
+    }
+
+    public void setMonth(Object month) {
+        this.month = month;
+    }
+
+    public Object getGenterObject() {
+        return genderObject;
+    }
+
+    public void setGenterObject(Object genterObject) {
+        this.genderObject = genterObject;
+    }
+    
+    
+    
     
     @Override
     public String toString(){
