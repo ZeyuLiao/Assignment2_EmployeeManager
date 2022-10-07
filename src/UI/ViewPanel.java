@@ -48,18 +48,9 @@ public class ViewPanel extends javax.swing.JPanel {
         jButtonDeleteProfile = new javax.swing.JButton();
         jButtonSearchProfile = new javax.swing.JButton();
         jButtonRefresh = new javax.swing.JButton();
-        jPanelViewDisplay = new javax.swing.JPanel();
-        jLabelName = new javax.swing.JLabel();
-        jLabelID = new javax.swing.JLabel();
-        jLabelAge = new javax.swing.JLabel();
-        jLabelGender = new javax.swing.JLabel();
-        jLabelSDate = new javax.swing.JLabel();
-        jLabelLevel = new javax.swing.JLabel();
-        jLabelTeamInfo = new javax.swing.JLabel();
-        jLabelPosition = new javax.swing.JLabel();
-        jLabelTel = new javax.swing.JLabel();
-        jLabelEmail = new javax.swing.JLabel();
-        jLabelImageIcon = new javax.swing.JLabel();
+        jComboBoxSearchSyntax = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelEmptyDisplay = new javax.swing.JPanel();
 
         jScrollPaneView.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -113,6 +104,11 @@ public class ViewPanel extends javax.swing.JPanel {
         });
 
         jButtonSearchProfile.setText("Search Profile");
+        jButtonSearchProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchProfileActionPerformed(evt);
+            }
+        });
 
         jButtonRefresh.setText("Refresh");
         jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +117,10 @@ public class ViewPanel extends javax.swing.JPanel {
             }
         });
 
+        jComboBoxSearchSyntax.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "ID", "Team", "Position" }));
+
+        jLabel1.setText("BY");
+
         javax.swing.GroupLayout jPanelButtonGroupLayout = new javax.swing.GroupLayout(jPanelButtonGroup);
         jPanelButtonGroup.setLayout(jPanelButtonGroupLayout);
         jPanelButtonGroupLayout.setHorizontalGroup(
@@ -128,7 +128,7 @@ public class ViewPanel extends javax.swing.JPanel {
             .addGroup(jPanelButtonGroupLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonRefresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(jButtonViewProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonUpdateProfile)
@@ -136,7 +136,11 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addComponent(jButtonDeleteProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSearchProfile)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxSearchSyntax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         jPanelButtonGroupLayout.setVerticalGroup(
             jPanelButtonGroupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,106 +151,26 @@ public class ViewPanel extends javax.swing.JPanel {
                     .addComponent(jButtonUpdateProfile)
                     .addComponent(jButtonDeleteProfile)
                     .addComponent(jButtonSearchProfile)
-                    .addComponent(jButtonRefresh))
+                    .addComponent(jButtonRefresh)
+                    .addComponent(jComboBoxSearchSyntax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanelButtonGroup);
 
-        jLabelName.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelName.setText("Name");
-
-        jLabelID.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelID.setText("Employee ID");
-
-        jLabelAge.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelAge.setText("Age");
-
-        jLabelGender.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelGender.setText("Gender");
-
-        jLabelSDate.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelSDate.setText("Start Date");
-
-        jLabelLevel.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelLevel.setText("Level");
-
-        jLabelTeamInfo.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelTeamInfo.setText("Team Info");
-
-        jLabelPosition.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelPosition.setText("Position Title");
-
-        jLabelTel.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelTel.setText("Cell Phone Number");
-
-        jLabelEmail.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabelEmail.setText("Email");
-
-        jLabelImageIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelImageIcon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        javax.swing.GroupLayout jPanelViewDisplayLayout = new javax.swing.GroupLayout(jPanelViewDisplay);
-        jPanelViewDisplay.setLayout(jPanelViewDisplayLayout);
-        jPanelViewDisplayLayout.setHorizontalGroup(
-            jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                        .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                                .addGroup(jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelGender, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                                        .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelAge, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 81, Short.MAX_VALUE))))
-                    .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                        .addGroup(jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelSDate, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+        javax.swing.GroupLayout jPanelEmptyDisplayLayout = new javax.swing.GroupLayout(jPanelEmptyDisplay);
+        jPanelEmptyDisplay.setLayout(jPanelEmptyDisplayLayout);
+        jPanelEmptyDisplayLayout.setHorizontalGroup(
+            jPanelEmptyDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
-        jPanelViewDisplayLayout.setVerticalGroup(
-            jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelImageIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelViewDisplayLayout.createSequentialGroup()
-                        .addGroup(jPanelViewDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelName)
-                            .addComponent(jLabelAge))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelID)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelGender)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelTel)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelEmail)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabelTeamInfo)
-                .addGap(31, 31, 31)
-                .addComponent(jLabelPosition)
-                .addGap(36, 36, 36)
-                .addComponent(jLabelLevel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jLabelSDate)
-                .addGap(26, 26, 26))
+        jPanelEmptyDisplayLayout.setVerticalGroup(
+            jPanelEmptyDisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setRightComponent(jPanelViewDisplay);
+        jSplitPane1.setRightComponent(jPanelEmptyDisplay);
 
         javax.swing.GroupLayout jPanelViewLayout = new javax.swing.GroupLayout(jPanelView);
         jPanelView.setLayout(jPanelViewLayout);
@@ -262,7 +186,7 @@ public class ViewPanel extends javax.swing.JPanel {
             .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelViewLayout.createSequentialGroup()
                     .addGap(73, 73, 73)
-                    .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                    .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
                     .addGap(74, 74, 74)))
         );
         jPanelViewLayout.setVerticalGroup(
@@ -271,7 +195,7 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPaneViewAll, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
             .addGroup(jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelViewLayout.createSequentialGroup()
@@ -300,6 +224,11 @@ public class ViewPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
+
     private void jButtonDeleteProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteProfileActionPerformed
         // TODO add your handling code here:
         int selectRowIndex = jTableViewAll.getSelectedRow();
@@ -307,72 +236,57 @@ public class ViewPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Please select a row to delete");
             return;
         }
-        
+
         DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
         Info selectInfo = (Info) model.getValueAt(selectRowIndex ,0 );
         pList.deleteProfiles(selectInfo);
         JOptionPane.showMessageDialog(this,"Profile deleted");
-        
+        jSplitPane1.setBottomComponent(jPanelEmptyDisplay);
         populateTable();
-       
-    }//GEN-LAST:event_jButtonDeleteProfileActionPerformed
 
-    private void jButtonViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewProfileActionPerformed
-        // TODO add your handling code here:
-        jSplitPane1.setBottomComponent(jPanelViewDisplay);       
-        int selectRowIndex = jTableViewAll.getSelectedRow();
-        if(selectRowIndex <0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete");
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
-        Info selectInfo = (Info) model.getValueAt(selectRowIndex ,0 );
-        
-        jLabelName.setText("Name: " +String.valueOf( selectInfo.getName()));
-        jLabelID.setText("ID: "+ String.valueOf(selectInfo.getId()));
-        jLabelAge.setText("Age: "+ String.valueOf(selectInfo.getAge()));
-        jLabelGender.setText("Gender: "+ String.valueOf(selectInfo.getGender()));
-        jLabelSDate.setText("Start Date: "+ String.valueOf(selectInfo.getStart_date()));
-        jLabelLevel.setText("Level: "+ String.valueOf(selectInfo.getLevel()));
-        jLabelPosition.setText("Position Title: "+ String.valueOf(selectInfo.getPosition_title()));
-        jLabelTeamInfo.setText("Team: "+ String.valueOf(selectInfo.getTeam_info()));
-        jLabelTel.setText("Phone Number: "+ String.valueOf(selectInfo.getTel()));
-        jLabelEmail.setText("Email: "+ String.valueOf(selectInfo.getEmail()) + "@northeastern.edu");
-        jLabelImageIcon.setIcon(selectInfo.getPhoto());
-        
-        
-        
-        
-    }//GEN-LAST:event_jButtonViewProfileActionPerformed
+    }//GEN-LAST:event_jButtonDeleteProfileActionPerformed
 
     private void jButtonUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateProfileActionPerformed
         // TODO add your handling code here:
-        
+
         int selectRowIndex = jTableViewAll.getSelectedRow();
         if(selectRowIndex <0){
-            JOptionPane.showMessageDialog(this,"Please select a row to delete");
+            JOptionPane.showMessageDialog(this,"Please select a row to update");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
         Info selectInfo = (Info) model.getValueAt(selectRowIndex ,0 );
-        
+
         UpdatePanel ep = new UpdatePanel(selectInfo, pList);
         jSplitPane1.setBottomComponent(ep);
         populateTable();
-        
-        
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_jButtonUpdateProfileActionPerformed
 
-    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+    private void jButtonViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewProfileActionPerformed
         // TODO add your handling code here:
-        populateTable();
-    }//GEN-LAST:event_jButtonRefreshActionPerformed
+
+        int selectRowIndex = jTableViewAll.getSelectedRow();
+        if(selectRowIndex <0){
+            JOptionPane.showMessageDialog(this,"Please select a row to view details");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
+        Info selectInfo = (Info) model.getValueAt(selectRowIndex ,0 );
+        DetailPanel dp = new DetailPanel(selectInfo);
+        jSplitPane1.setBottomComponent(dp);
+
+    }//GEN-LAST:event_jButtonViewProfileActionPerformed
+
+    private void jButtonSearchProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchProfileActionPerformed
+        // TODO add your handling code here:
+        jSplitPane1.setBottomComponent(jPanelEmptyDisplay);
+        String keyWords = JOptionPane.showInputDialog(null, "Please input key words");
+        if(keyWords == null) return;
+        SearchTable(keyWords, (String) jComboBoxSearchSyntax.getSelectedItem());
+        
+        
+    }//GEN-LAST:event_jButtonSearchProfileActionPerformed
 
     private void populateTable(){
         DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
@@ -391,6 +305,70 @@ public class ViewPanel extends javax.swing.JPanel {
         
     }
     
+    private void SearchTable(String keyWords, String matchPattern){
+        DefaultTableModel model = (DefaultTableModel) jTableViewAll.getModel();
+        model.setRowCount(0);
+        
+        switch(matchPattern){
+            case "Name"->  {
+               for (Info info : pList.getHistory()){
+                    if(keyWords.equals(info.getName())){
+                        Object[] row = new Object[5];          
+                        row[0] = info;
+                        row[1] = info.getId();
+                        row[2] = info.getTeam_info();
+                        row[3] = info.getPosition_title();
+                        row[4] = info.getLevel();
+                        model.addRow(row);                
+                    }
+                } 
+            }
+            
+            case "ID" -> {
+                for (Info info : pList.getHistory()){
+                    if(keyWords.equals(String.valueOf(info.getId())) ){
+                        Object[] row = new Object[5];          
+                        row[0] = info;
+                        row[1] = info.getId();
+                        row[2] = info.getTeam_info();
+                        row[3] = info.getPosition_title();
+                        row[4] = info.getLevel();
+                        model.addRow(row);                
+                    }
+                }                               
+            }
+        
+            case "Team" -> {
+                for (Info info : pList.getHistory()){
+                    if(keyWords.equals(info.getTeam_info())){
+                        Object[] row = new Object[5];          
+                        row[0] = info;
+                        row[1] = info.getId();
+                        row[2] = info.getTeam_info();
+                        row[3] = info.getPosition_title();
+                        row[4] = info.getLevel();
+                        model.addRow(row);                
+                    }
+                }                              
+            }
+            
+            case "Position" -> {
+                for (Info info : pList.getHistory()){
+                    if(keyWords.equals(info.getPosition_title())){
+                        Object[] row = new Object[5];          
+                        row[0] = info;
+                        row[1] = info.getId();
+                        row[2] = info.getTeam_info();
+                        row[3] = info.getPosition_title();
+                        row[4] = info.getLevel();
+                        model.addRow(row);                
+                    }
+                }                              
+            }
+                     
+        }        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDeleteProfile;
@@ -398,21 +376,12 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButtonSearchProfile;
     private javax.swing.JButton jButtonUpdateProfile;
     private javax.swing.JButton jButtonViewProfile;
-    private javax.swing.JLabel jLabelAge;
-    private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JLabel jLabelGender;
-    private javax.swing.JLabel jLabelID;
-    private javax.swing.JLabel jLabelImageIcon;
-    private javax.swing.JLabel jLabelLevel;
-    private javax.swing.JLabel jLabelName;
-    private javax.swing.JLabel jLabelPosition;
-    private javax.swing.JLabel jLabelSDate;
-    private javax.swing.JLabel jLabelTeamInfo;
-    private javax.swing.JLabel jLabelTel;
+    private javax.swing.JComboBox<String> jComboBoxSearchSyntax;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelButtonGroup;
+    private javax.swing.JPanel jPanelEmptyDisplay;
     private javax.swing.JPanel jPanelView;
-    private javax.swing.JPanel jPanelViewDisplay;
     private javax.swing.JScrollPane jScrollPaneView;
     private javax.swing.JScrollPane jScrollPaneViewAll;
     private javax.swing.JSplitPane jSplitPane1;
