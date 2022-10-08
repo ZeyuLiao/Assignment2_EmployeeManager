@@ -30,7 +30,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPane1" alignment="0" pref="733" max="32767" attributes="0"/>
+          <Component id="jSplitPane1" alignment="0" pref="770" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -62,7 +62,7 @@
                       <Component id="jButtonCreate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="jButtonView" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="584" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="621" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -102,7 +102,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="733" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="770" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">

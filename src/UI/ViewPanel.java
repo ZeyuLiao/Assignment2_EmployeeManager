@@ -62,11 +62,11 @@ public class ViewPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Name", "ID", "Team", "Position", "Title"
+                "Name", "ID", "Team", "Position", "Level"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -212,7 +212,7 @@ public class ViewPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneView, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addComponent(jScrollPaneView)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -321,6 +321,7 @@ public class ViewPanel extends javax.swing.JPanel {
                         row[4] = info.getLevel();
                         model.addRow(row);                
                     }
+                    
                 } 
             }
             
